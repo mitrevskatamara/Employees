@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  default:
+    external:
+      name: backend-app
+services:
+  db:
+    image: mongo:latest
+    container_name: db-image
+    ports:
+      - "27017:27017"
+  app:
+    image: employees-management
+    container_name: app-image
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_HOST=db
+    links:
+      - db

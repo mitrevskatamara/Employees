@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1>List of employees:</h1>
+    <div class="float-sm-right">
+        <h5>
+        <a href="/employees/showAdd" class="add-item">
+            Create new employee
+        </a>
+        </h5>
+
+    </div>
+</div>
+<div class="mb-4">
+    <div class="container">
+
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Type</th>
+                <th scope="col">Employment Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr class="item" th:each="employee:${employees}">
+                <td th:text="${employee.getName()}">[employees.name]</td>
+                <td th:text="${employee.getEmail()}">[employees.email]</td>
+                <td th:text="${employee.getType()}">[employees.type]</td>
+                <td th:text="${employee.getEmploymentDate()}">[employees.employmentDate]</td>
+                <td>
+                    <a class="edit-item" th:href="@{'/employees/{id}/edit' (id=${employee.getId()})}">Edit</a>
+                    <form th:action="@{'/employees/{id}/delete' (id=${employee.getId()})}" th:method="POST">
+                        <button type="submit" class="delete-item">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
