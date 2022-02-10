@@ -28,9 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee create(String name, String email, String type, LocalDate employmentDate) {
-        String id = UUID.randomUUID().toString();
+
         Employee employee = Employee.builder()
-                .id(id)
                 .name(name)
                 .email(email)
                 .type(type)

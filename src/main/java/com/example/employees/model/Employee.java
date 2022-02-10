@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @Document(collection = "employees")
 public class Employee {
 
+    @Id
     private String id;
 
     private String name;
